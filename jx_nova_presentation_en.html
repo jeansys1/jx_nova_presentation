@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JX Nova — Junior Dev Collective</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0f;
+  --bg2:#141418;
+  --bg3:#1a1a20;
+  --border:#2a2a35;
+  --border2:#3a3a48;
+  --purple:#7F77DD;
+  --purple-dim:#3C3489;
+  --purple-bright:#AFA9EC;
+  --teal:#1D9E75;
+  --teal-dim:#085041;
+  --teal-bright:#5DCAA5;
+  --amber:#EF9F27;
+  --text:#e8e6f0;
+  --text2:#9996aa;
+  --text3:#5a5870;
+}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif}
+.wrap{max-width:680px;margin:0 auto;padding:2rem 1.25rem 3rem}
+.slide{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;margin-bottom:2rem}
+.slide.visible{opacity:1;transform:none}
+.hero-logo{display:flex;align-items:center;gap:14px;margin-bottom:1rem}
+.logo-mark{width:48px;height:48px;border-radius:12px;background:var(--purple-dim);border:1px solid var(--purple);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:26px;height:26px}
+.logo-name{font-size:28px;font-weight:500;letter-spacing:-.5px;color:var(--text)}
+.logo-tag{font-size:13px;color:var(--text2);letter-spacing:.04em;margin-top:2px}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}
+.tagline{font-size:17px;line-height:1.65;color:var(--text2);max-width:480px;margin-bottom:1.5rem}
+.tagline span{color:var(--purple-bright);font-weight:500}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
+.badge{font-size:12px;padding:4px 12px;border-radius:20px;font-weight:500;border:1px solid}
+.b-purple{background:#26215C;color:#AFA9EC;border-color:#534AB7}
+.b-teal{background:#04342C;color:#5DCAA5;border-color:#0F6E56}
+.b-amber{background:#412402;color:#EF9F27;border-color:#854F0B}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:10px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:.75rem}
+.card-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dp{background:var(--purple)}
+.dt{background:var(--teal)}
+.da{background:var(--amber)}
+.list{display:flex;flex-direction:column;gap:6px}
+.list-item{font-size:13.5px;color:var(--text2);padding-left:16px;position:relative;line-height:1.55}
+.list-item::before{content:"—";position:absolute;left:0;color:var(--border2)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tool-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.tool-name{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
+.tool-role{font-size:12px;color:var(--text2);line-height:1.45}
+.tool-dot{width:6px;height:6px;border-radius:50%;margin-bottom:8px}
+.td-p{background:var(--purple)}
+.td-t{background:var(--teal)}
+.td-a{background:var(--amber)}
+.phase-row{display:flex;gap:12px;padding-bottom:18px;position:relative}
+.phase-row:not(:last-child)::after{content:"";position:absolute;left:12px;top:28px;bottom:0;width:1px;background:var(--border)}
+.phase-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0;z-index:1}
+.pn1{background:#26215C;color:#AFA9EC;border:1px solid #534AB7}
+.pn2{background:#04342C;color:#5DCAA5;border:1px solid #0F6E56}
+.pn3{background:#412402;color:#EF9F27;border:1px solid #854F0B}
+.pn4{background:#1a0c2e;color:#AFA9EC;border:1px solid #3C3489}
+.phase-body{flex:1}
+.phase-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px;line-height:1.4}
+.phase-sub{font-size:13px;color:var(--text2);line-height:1.55}
+.skill-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.skill-name{font-size:13.5px;font-weight:500;color:var(--text);margin-bottom:2px}
+.skill-why{font-size:12px;color:var(--text2)}
+.warn{background:#1c1200;border-left:2px solid var(--amber);border-radius:0 10px 10px 0;padding:10px 14px;margin-top:8px}
+.warn p{font-size:13px;color:#c87d15;line-height:1.5}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem}
+.metric{background:var(--bg3);border-radius:10px;padding:12px 14px;border:1px solid var(--border)}
+.metric-val{font-size:22px;font-weight:500;margin-bottom:2px}
+.metric-label{font-size:12px;color:var(--text2)}
+.mv-p{color:var(--purple-bright)}
+.mv-t{color:var(--teal-bright)}
+.mv-a{color:var(--amber)}
+.footer-bar{border-top:1px solid var(--border);padding-top:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-left{font-size:13px;color:var(--text3)}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease-in-out infinite;display:inline-block;vertical-align:middle;margin-right:6px}
+.nav-dots{display:flex;justify-content:center;gap:6px;margin-top:1.5rem}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:background .2s,transform .2s}
+.nav-dot.active{background:var(--purple);transform:scale(1.3)}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="root">
+
+  <div class="slide" id="s0">
+    <div class="hero-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="13,2 24,8 24,18 13,24 2,18 2,8" fill="#26215C" stroke="#7F77DD" stroke-width="1.2"/>
+          <text x="13" y="17" text-anchor="middle" font-size="9" font-weight="500" fill="#AFA9EC" font-family="system-ui">JX</text>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">JX Nova</div>
+        <div class="logo-tag">Junior Dev Collective — JavaScript / Web</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p class="tagline">A collective of junior developers who learn <span>together</span>, build <span>real projects</span> and prepare for the <span>job market</span>.</p>
+
+    <div class="badges">
+      <span class="badge b-purple">JavaScript / Web</span>
+      <span class="badge b-teal">Online · Discord + GitHub</span>
+      <span class="badge b-amber">2–5 members · Learning</span>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-val mv-p">2–5</div><div class="metric-label">Founding members</div></div>
+      <div class="metric"><div class="metric-val mv-t">100%</div><div class="metric-label">Real projects</div></div>
+      <div class="metric"><div class="metric-val mv-a">3–6</div><div class="metric-label">Months to take off</div></div>
+    </div>
+  </div>
+
+  <div class="slide" id="s1">
+    <p class="section-label">Why JX Nova</p>
+    <div class="card">
+      <div class="card-title"><span class="dot dp"></span>The problem we solve</div>
+      <div class="list">
+        <div class="list-item">Learning alone is hard — motivation drops fast without accountability</div>
+        <div class="list-item">Tutorials don't replace real hands-on project experience</div>
+        <div class="list-item">The job market expects a portfolio and collaborative experience</div>
+        <div class="list-item">Junior developers often lack accessible feedback and mentorship</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dt"></span>What JX Nova brings</div>
+      <div class="list">
+        <div class="list-item">A structured weekly peer-learning group with a clear agenda</div>
+        <div class="list-item">Shared GitHub projects to build a real, public portfolio</div>
+        <div class="list-item">Active preparation for interviews, internships and freelance work</div>
+        <div class="list-item">Resource sharing, cross code reviews and measurable progress</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s2">
+    <p class="section-label">Stack & organisation</p>
+    <div class="grid3" style="margin-bottom:.75rem">
+      <div class="tool-card"><div class="tool-dot td-p"></div><div class="tool-name">Discord</div><div class="tool-role">Daily communication, topic channels, voice calls</div></div>
+      <div class="tool-card"><div class="tool-dot td-t"></div><div class="tool-name">GitHub</div><div class="tool-role">Code, shared projects, PR reviews, public portfolio</div></div>
+      <div class="tool-card"><div class="tool-dot td-a"></div><div class="tool-name">Notion</div><div class="tool-role">Roadmap, resources, meeting notes (phase 2)</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dp"></span>How we work</div>
+      <div class="list">
+        <div class="list-item">1 weekly meeting of 20–30 min with agenda sent 24h in advance</div>
+        <div class="list-item">1 active shared project on GitHub at all times</div>
+        <div class="list-item">Mandatory cross code review before any merge</div>
+        <div class="list-item">Each member shares at least one resource per week</div>
+        <div class="list-item">Monthly retrospective: what works, what we improve</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s3">
+    <p class="section-label">Launch roadmap</p>
+    <div class="card">
+      <div class="phase-row">
+        <div class="phase-num pn1">1</div>
+        <div class="phase-body">
+          <div class="phase-title">Week 1 — Foundations</div>
+          <div class="phase-sub">Set up structured Discord, GitHub org JX-Nova, presentation README. Write the recruitment pitch and define member selection criteria.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num pn2">2</div>
+        <div class="phase-body">
+          <div class="phase-title">Weeks 2–3 — Recruitment</div>
+          <div class="phase-sub">Share in dev communities (Discord, Reddit, school). Informal 10-min interviews. Select 2 to 4 motivated members available at least 4h/week.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num pn3">3</div>
+        <div class="phase-body">
+          <div class="phase-title">Month 1 — First shared project</div>
+          <div class="phase-sub">Concrete JS mini-project (web app, API, CLI tool). Every member contributes to the same repo. Delivered in 4 weeks and published publicly.</div>
+        </div>
+      </div>
+      <div class="phase-row" style="padding-bottom:0">
+        <div class="phase-num pn4">4</div>
+        <div class="phase-body">
+          <div class="phase-title">Month 2+ — Routine & job market</div>
+          <div class="phase-sub">Progressively more complex projects. Build individual portfolios. Apply for internships and freelance with the group as a reference. Open to new members when ready.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s4">
+    <p class="section-label">Who we're looking for</p>
+    <div class="grid2" style="margin-bottom:.75rem">
+      <div class="skill-item"><div class="skill-name">Level</div><div class="skill-why">Junior — beginner to intermediate, no experts required</div></div>
+      <div class="skill-item"><div class="skill-name">Availability</div><div class="skill-why">Minimum 4h per week dedicated to the group</div></div>
+      <div class="skill-item"><div class="skill-name">Stack</div><div class="skill-why">JavaScript / Web — HTML, CSS, JS (React welcome)</div></div>
+      <div class="skill-item"><div class="skill-name">Git</div><div class="skill-why">Basic Git knowledge required or willingness to learn fast</div></div>
+      <div class="skill-item"><div class="skill-name">Attitude</div><div class="skill-why">Curious, reliable, able to give and receive feedback</div></div>
+      <div class="skill-item"><div class="skill-name">Goal</div><div class="skill-why">Internship, freelance or levelling up skills fast</div></div>
+    </div>
+    <div class="warn"><p>This group is not a passive space. Every member contributes actively — both giving and receiving.</p></div>
+  </div>
+
+  <div class="slide" id="s5">
+    <p class="section-label">About the founder</p>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        <div style="width:46px;height:46px;border-radius:50%;background:var(--purple-dim);border:1px solid var(--purple);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;color:var(--purple-bright);flex-shrink:0">JX</div>
+        <div>
+          <div style="font-size:15px;font-weight:500;color:var(--text)">Jeansy Mboumba · 18 years old</div>
+          <div style="font-size:13px;color:var(--text2)">JavaScript / Web Developer</div>
+        </div>
+      </div>
+      <div class="list">
+        <div class="list-item">Self-taught JavaScript developer, passionate about web and app development</div>
+        <div class="list-item">Personal initiative: build a structured, long-term learning dynamic</div>
+        <div class="list-item">Convinced that growing together is faster than learning alone</div>
+        <div class="list-item">Looking for both mentors and motivated co-learners</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot dt"></span>What I'm looking for from teachers</div>
+      <div class="list">
+        <div class="list-item">Advice on the group's learning structure and organisation</div>
+        <div class="list-item">Validation of the technical roadmap and project choices</div>
+        <div class="list-item">Connections with other motivated juniors or useful resources</div>
+        <div class="list-item">Honest feedback on what's missing or could be improved</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" id="s6">
+    <div class="footer-bar">
+      <div class="footer-left">
+        <span class="live-dot"></span>JX Nova — Open for recruitment
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-dots" id="nav"></div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const navEl = document.getElementById('nav');
+Array.from(slides).forEach((_,i)=>{
+  const d=document.createElement('div');
+  d.className='nav-dot'+(i===0?' active':'');
+  d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth',block:'start'});
+  navEl.appendChild(d);
+});
+function updateNav(){
+  const dots=navEl.querySelectorAll('.nav-dot');
+  let active=0;
+  slides.forEach((s,i)=>{
+    if(s.getBoundingClientRect().top<window.innerHeight*0.6)active=i;
+  });
+  dots.forEach((d,i)=>d.classList.toggle('active',i===active));
+}
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.12});
+slides.forEach(s=>obs.observe(s));
+window.addEventListener('scroll',updateNav,{passive:true});
+updateNav();
+</script>
+</body>
+</html>
